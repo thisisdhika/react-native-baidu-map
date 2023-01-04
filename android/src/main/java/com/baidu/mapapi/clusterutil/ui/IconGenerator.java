@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.lovebing.reactnative.baidumap.R;
+import com.thisisdhika.baidumap.R;
 
 /**
  * IconGenerator generates icons that contain text (or custom content) within an info

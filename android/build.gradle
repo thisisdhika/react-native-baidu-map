@@ -10,7 +10,7 @@ buildscript {
         google()
         jcenter()
         maven() {
-            url 'http://repo.lovebing.net/repository/maven-public/'
+            url 'https://repo.lovebing.net/repository/maven-public/'
         }
     }
     dependencies {
@@ -23,17 +23,17 @@ repositories {
     google()
     jcenter()
     maven {
-        url 'http://repo.lovebing.net/repository/maven-public/'
+        url 'https://repo.lovebing.net/repository/maven-public/'
     }
 }
 
 android {
-    compileSdkVersion safeExtGet('compileSdkVersion', 28)
-    buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
+    compileSdkVersion safeExtGet('compileSdkVersion', 31)
+    buildToolsVersion safeExtGet('buildToolsVersion', '31.0.0')
 
     defaultConfig {
-        minSdkVersion safeExtGet('minSdkVersion', 21)
-        targetSdkVersion safeExtGet('targetSdkVersion', 28)
+        minSdkVersion safeExtGet('minSdkVersion', 23)
+        targetSdkVersion safeExtGet('targetSdkVersion', 31)
         versionCode 1
         versionName "${version}"
     }
@@ -51,7 +51,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.facebook.react:react-native:0.62.2'
+    compileOnly 'com.facebook.react:react-native:0.70.5'
     implementation files('libs/BaiduLBS_Android.jar')
     compileOnly files('src/main/assets')
 }
