@@ -56,20 +56,25 @@ public class GeolocationModule extends BaseModule
     }
 
     private void initLocationClient(String coorType) {
-        if (context.getCurrentActivity() != null) {
-            AppUtils.checkPermission(context.getCurrentActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+        try {
+            if (context.getCurrentActivity() != null) {
+                AppUtils.checkPermission(context.getCurrentActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+
+            LocationClientOption option = new LocationClientOption();
+            option.setLocationMode(LocationMode.Hight_Accuracy);
+            option.setCoorType(coorType);
+            option.setIsNeedAddress(true);
+            option.setIsNeedAltitude(true);
+            option.setIsNeedLocationDescribe(true);
+            option.setOpenGps(true);
+            locationClient = new LocationClient(context.getApplicationContext());
+            locationClient.setLocOption(option);
+            Log.i("locationClient", "locationClient");
+            locationClient.registerLocationListener(this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationMode.Hight_Accuracy);
-        option.setCoorType(coorType);
-        option.setIsNeedAddress(true);
-        option.setIsNeedAltitude(true);
-        option.setIsNeedLocationDescribe(true);
-        option.setOpenGps(true);
-        locationClient = new LocationClient(context.getApplicationContext());
-        locationClient.setLocOption(option);
-        Log.i("locationClient", "locationClient");
-        locationClient.registerLocationListener(this);
     }
 
     /**
