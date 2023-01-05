@@ -53,6 +53,5 @@ android {
 dependencies {
     compileOnly 'com.facebook.react:react-native:0.70.5'
     implementation files('libs/BaiduLBS_Android.jar')
-    // compileOnly files('src/main/assets')
 }
 
