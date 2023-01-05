@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import java.util.Arrays;
 import java.util.List;
 
+import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -29,7 +30,6 @@ import com.thisisdhika.baidumap.module.MapAppModule;
 import com.thisisdhika.baidumap.uimanager.*;
 import com.thisisdhika.baidumap.view.OverlayMarkerIcon;
 
-
 /**
  * Created by lovebing on 4/17/16.
  */
@@ -41,8 +41,7 @@ public class BaiduMapPackage implements ReactPackage {
                 new BaiduMapManager(reactContext),
                 new GeolocationModule(reactContext),
                 new GetDistanceModule(reactContext),
-                new MapAppModule(reactContext)
-        );
+                new MapAppModule(reactContext));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -61,15 +60,16 @@ public class BaiduMapPackage implements ReactPackage {
                 new OverlayPolygonManager(),
                 new OverlayPolylineManager(),
                 new OverlayTextManager(),
-                new OverlayHeatMapManager()
-        );
+                new OverlayHeatMapManager());
     }
 
     @MainThread
     protected void init(ReactApplicationContext reactContext) {
-        if (Looper.myLooper() == null){
+        if (Looper.myLooper() == null) {
             Looper.prepare();
         }
+
         SDKInitializer.initialize(reactContext.getApplicationContext());
+        LocationClient.setAgreePrivacy(true);
     }
 }

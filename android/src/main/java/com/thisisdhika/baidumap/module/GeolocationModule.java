@@ -56,7 +56,7 @@ public class GeolocationModule extends BaseModule
     }
 
     private void initLocationClient(String coorType) {
-        if(context.getCurrentActivity() != null) {
+        if (context.getCurrentActivity() != null) {
             AppUtils.checkPermission(context.getCurrentActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         }
         LocationClientOption option = new LocationClientOption();
@@ -71,12 +71,13 @@ public class GeolocationModule extends BaseModule
         Log.i("locationClient", "locationClient");
         locationClient.registerLocationListener(this);
     }
+
     /**
      *
      * @return
      */
     protected GeoCoder getGeoCoder() {
-        if(geoCoder != null) {
+        if (geoCoder != null) {
             geoCoder.destroy();
         }
         geoCoder = GeoCoder.newInstance();
@@ -198,10 +199,9 @@ public class GeolocationModule extends BaseModule
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             params.putInt("errcode", -1);
             params.putString("errmsg", result.error.name());
-        }
-        else {
-            params.putDouble("latitude",  result.getLocation().latitude);
-            params.putDouble("longitude",  result.getLocation().longitude);
+        } else {
+            params.putDouble("latitude", result.getLocation().latitude);
+            params.putDouble("longitude", result.getLocation().longitude);
         }
         sendEvent("onGetGeoCodeResult", params);
     }
@@ -211,8 +211,7 @@ public class GeolocationModule extends BaseModule
         WritableMap params = Arguments.createMap();
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             params.putInt("errcode", -1);
-        }
-        else {
+        } else {
             ReverseGeoCodeResult.AddressComponent addressComponent = result.getAddressDetail();
             params.putString("address", result.getAddress());
             params.putString("province", addressComponent.province);
@@ -223,7 +222,7 @@ public class GeolocationModule extends BaseModule
 
             WritableArray list = Arguments.createArray();
             List<PoiInfo> poiList = result.getPoiList();
-            for (PoiInfo info: poiList) {
+            for (PoiInfo info : poiList) {
                 WritableMap attr = Arguments.createMap();
                 attr.putString("name", info.name);
                 attr.putString("address", info.address);
